@@ -45,3 +45,8 @@ extend-select = ["I"]  # Add import sorting
 [tool.ruff.lint.isort]
 known-first-party = ["forest_cover"]
 force-sort-within-sections = true
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.6.2",
+]
