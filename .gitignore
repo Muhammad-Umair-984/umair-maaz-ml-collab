@@ -7,7 +7,6 @@
 # Trained models and local experiment files stay out of Git.
 /models/**/*.pkl
 /models/**/*.joblib
-/models/training_metadata.json
 *.ckpt
 /checkpoints/
 /mlruns/
