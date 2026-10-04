@@ -35,5 +35,8 @@ jobs:
       - name: Run tests
         run: uv run pytest -q
 
+      - name: Smoke train model
+        run: uv run pytest tests/test_smoke_train.py -q
+
       - name: Validate DVC configuration
         run: uv run dvc status
