@@ -17,8 +17,8 @@ stages:
       size: 2198
     - path: src/forest_cover/modeling/prepare.py
       hash: md5
-      md5: e09c521e20edf1d7047020d275eaac2e
-      size: 2542
+      md5: 5f137578ead94a200c0ee5ccef9d7810
+      size: 2615
     params:
       params.yaml:
         prepare.test_size: 0.2
@@ -55,7 +55,7 @@ stages:
       params.yaml:
         seed: 42
         train.model: sgd_classifier
-        train.parameters.alpha: 0.0001
+        train.parameters.alpha: 0.00025
         train.parameters.class_weight: balanced
         train.parameters.loss: log_loss
         train.parameters.max_iter: 500
@@ -64,12 +64,12 @@ stages:
     outs:
     - path: models/model.joblib
       hash: md5
-      md5: 6aff2e6e90f7052f3d8ff8b2093b642e
+      md5: c859005279d38fa6fbb8429bcb855f20
       size: 7119
     - path: models/training_metadata.json
       hash: md5
-      md5: 722d6099344cc6ee8dd8b2289cae38fa
-      size: 388
+      md5: b21cd72b830ac8fa112d7f9731f6d91c
+      size: 389
   evaluate:
     cmd: uv run python -m forest_cover.modeling.evaluate
     deps:
@@ -79,7 +79,7 @@ stages:
       size: 2394532
     - path: models/model.joblib
       hash: md5
-      md5: 6aff2e6e90f7052f3d8ff8b2093b642e
+      md5: c859005279d38fa6fbb8429bcb855f20
       size: 7119
     - path: src/forest_cover/config.py
       hash: md5
@@ -91,10 +91,10 @@ stages:
       size: 2198
     - path: src/forest_cover/modeling/evaluate.py
       hash: md5
-      md5: 1cb4a8fea730ef840b1c581d29728d0e
-      size: 2113
+      md5: 7d22bbd7deae36cc728cd482733d72e0
+      size: 2170
     outs:
     - path: metrics.json
       hash: md5
-      md5: 6e72e757f96a38848d73bda21ca48585
-      size: 112
+      md5: 7a8341eba9e5c7e5ec19abe2f979e95d
+      size: 113
