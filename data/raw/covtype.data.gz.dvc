@@ -1,0 +1,5 @@
+outs:
+- md5: 99670d8d942f09d459c7d4486fca8af5  # pragma: allowlist secret
+  size: 11240707
+  hash: md5
+  path: covtype.data.gz
