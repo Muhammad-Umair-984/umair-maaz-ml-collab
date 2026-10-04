@@ -10,5 +10,5 @@ train:
     penalty: l2
     alpha: 0.00025
     max_iter: 500
-    tol: 0.0005
+    tol: 0.001
     class_weight: balanced
