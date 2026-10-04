@@ -1,0 +1,5 @@
+outs:
+- md5: e0e725654c37e371cff57d14da58575a  # pragma: allowlist secret
+  size: 347
+  hash: md5
+  path: dataset_manifest.json

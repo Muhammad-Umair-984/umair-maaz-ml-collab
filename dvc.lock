@@ -68,7 +68,7 @@ stages:
       size: 7119
     - path: models/training_metadata.json
       hash: md5
-      md5: b21cd72b830ac8fa112d7f9731f6d91c
+      md5: 8f9ba728eb0a6eb14a345ec6b955ea8f
       size: 389
   evaluate:
     cmd: uv run python -m forest_cover.modeling.evaluate
