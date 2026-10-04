@@ -1,0 +1,100 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: uv run python -m forest_cover.modeling.prepare
+    deps:
+    - path: data/raw/covtype.data.gz
+      hash: md5
+      md5: 99670d8d942f09d459c7d4486fca8af5
+      size: 11240707
+    - path: src/forest_cover/config.py
+      hash: md5
+      md5: 991a3cf4c5c2559527babf25def2ae33
+      size: 851
+    - path: src/forest_cover/eda.py
+      hash: md5
+      md5: 1f19c83f20023d566e351dc5d8f43be0
+      size: 2198
+    - path: src/forest_cover/modeling/prepare.py
+      hash: md5
+      md5: e09c521e20edf1d7047020d275eaac2e
+      size: 2542
+    params:
+      params.yaml:
+        prepare.test_size: 0.2
+        seed: 42
+    outs:
+    - path: data/processed/test.csv.gz
+      hash: md5
+      md5: 79b7382096ded846a63bb85b70658040
+      size: 2394532
+    - path: data/processed/train.csv.gz
+      hash: md5
+      md5: 8bd11564a4f0502b81264b6d5e45131b
+      size: 9574801
+  train:
+    cmd: uv run python -m forest_cover.modeling.train
+    deps:
+    - path: data/processed/train.csv.gz
+      hash: md5
+      md5: 8bd11564a4f0502b81264b6d5e45131b
+      size: 9574801
+    - path: src/forest_cover/config.py
+      hash: md5
+      md5: 991a3cf4c5c2559527babf25def2ae33
+      size: 851
+    - path: src/forest_cover/eda.py
+      hash: md5
+      md5: 1f19c83f20023d566e351dc5d8f43be0
+      size: 2198
+    - path: src/forest_cover/modeling/train.py
+      hash: md5
+      md5: 121746584a1c3e6a99b01625d672dbc9
+      size: 4187
+    params:
+      params.yaml:
+        seed: 42
+        train.model: sgd_classifier
+        train.parameters.alpha: 0.0001
+        train.parameters.class_weight: balanced
+        train.parameters.loss: log_loss
+        train.parameters.max_iter: 500
+        train.parameters.penalty: l2
+        train.parameters.tol: 0.001
+    outs:
+    - path: models/model.joblib
+      hash: md5
+      md5: 6aff2e6e90f7052f3d8ff8b2093b642e
+      size: 7119
+    - path: models/training_metadata.json
+      hash: md5
+      md5: 722d6099344cc6ee8dd8b2289cae38fa
+      size: 388
+  evaluate:
+    cmd: uv run python -m forest_cover.modeling.evaluate
+    deps:
+    - path: data/processed/test.csv.gz
+      hash: md5
+      md5: 79b7382096ded846a63bb85b70658040
+      size: 2394532
+    - path: models/model.joblib
+      hash: md5
+      md5: 6aff2e6e90f7052f3d8ff8b2093b642e
+      size: 7119
+    - path: src/forest_cover/config.py
+      hash: md5
+      md5: 991a3cf4c5c2559527babf25def2ae33
+      size: 851
+    - path: src/forest_cover/eda.py
+      hash: md5
+      md5: 1f19c83f20023d566e351dc5d8f43be0
+      size: 2198
+    - path: src/forest_cover/modeling/evaluate.py
+      hash: md5
+      md5: 1cb4a8fea730ef840b1c581d29728d0e
+      size: 2113
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: 6e72e757f96a38848d73bda21ca48585
+      size: 112
