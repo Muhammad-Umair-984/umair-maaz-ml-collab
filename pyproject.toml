@@ -49,5 +49,6 @@ force-sort-within-sections = true
 
 [dependency-groups]
 dev = [
+    "jupytext>=1.19.5",
     "pre-commit>=4.6.2",
 ]
